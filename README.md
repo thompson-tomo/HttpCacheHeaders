@@ -1,9 +1,9 @@
 # Http Cache Headers Middleware for ASP.NET Core
 ASP.NET Core middleware that adds HttpCache headers to responses (Cache-Control, Expires, ETag, Last-Modified), and implements cache expiration &amp; validation models.  It can be used to ensure caches correctly cache responses and/or to implement concurrency for REST-based APIs using ETags.
 
-The middleware itself does not store responses.  Looking at [this description]( http://2ndscale.com/rtomayko/2008/things-caches-do "Things Caches Do"), this middleware handles the "backend"-part: it generates the correct cache-related headers, and ensures a cache can check for expiration (304 Not Modified) & preconditions (412 Precondition Failed) (often used for concurrency checks).
+The middleware itself **does not store responses**. What it does is generate the correct cache-related headers, and ensure a cache can check for expiration (304 Not Modified) & preconditions (412 Precondition Failed) (often used for concurrency checks).  For more information on caches, the different models and the related headers, have a look at https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Caching.
 
-It can be used together with a shared cache, a private cache or both.  For production scenarios the best approach is to use this middleware to generate the ETags, combined with a cache server or CDN to inspect those tags and effectively cache the responses.  In the sample, the Microsoft.AspNetCore.ResponseCaching cache store is used to cache the responses.  
+This middleware can be used together with a shared cache, a private cache or both.  For production scenarios the best approach is to use this middleware to generate the ETags, combined with a cache server or CDN to inspect those tags and effectively cache the responses.  In the sample, the Microsoft.AspNetCore.ResponseCaching cache store is used to cache the responses.  
 
 [![NuGet version](https://badge.fury.io/nu/marvin.cache.headers.svg)](https://badge.fury.io/nu/marvin.cache.headers)
  
